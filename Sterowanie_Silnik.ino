@@ -1,3 +1,4 @@
+int licznik=0;  //zmienna globalna licząca włączenie programu
 void setup() 
 {
   pinMode(6, OUTPUT); //Sygnał PWM silnika 
@@ -11,26 +12,31 @@ void setup()
 }
 
 void loop() {
-  int licznik=0;
- if (digitalRead(7) == LOW)
+  
+ while (digitalRead(7) == LOW)    //Włączenie programu
  {
-  delay(500);
-  digitalWrite(6, HIGH);
-  licznik = licznik++;
-  Serial.println(licznik);
-if (digitalRead(8)== LOW && digitalRead(9)== LOW)
+  delay(300);       //redukcja drgań
+  digitalWrite(6, HIGH);    //włączenie silnika
+  licznik = licznik++;      //zwiększenie licznika
+  Serial.println(licznik);  //wyświetlenie licznika
+
+  while (digitalRead(8) == LOW)     //włączenie obrotów w lewo
   {
-    digitalWrite(6, LOW);
+    if (digitalRead(8)== LOW && digitalRead(9)== LOW) // zabezpieczenie przed jednoczesnym wciśnieciem obu przycisków
+  {
+    digitalWrite(6, LOW);   //wyłączenie zasilania silnika
   }
-  if (digitalRead(8) == LOW)
-  {
-    delay(500);
+    delay(300);     //redukcja drgan przycisku
     digitalWrite(10, LOW); //Silnik obroty w lewo
     digitalWrite(11, HIGH);
   }
-  if (digitalRead(9) == LOW)
+  while (digitalRead(9) == LOW)  //włączenie obrotów w prawo
   {
-    delay(500);
+    if (digitalRead(8)== LOW && digitalRead(9)== LOW) // zabezpieczenie przed jednoczesnym wciśnieciem obu przycisków
+  {
+    digitalWrite(6, LOW);   //wyłączenie zasilania silnika
+  }
+    delay(300);   //redukcja drgan przycisku
     digitalWrite(10, HIGH); //Silnik obroty w lewo
     digitalWrite(11, LOW);
   }
