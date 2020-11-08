@@ -12,7 +12,7 @@ void setup()
 }
 
 void loop() {
-  
+  digitalWrite(6, LOW);//silnik wyłączony
  while (digitalRead(7) == LOW)    //Włączenie programu
  {
   delay(300);       //redukcja drgań
