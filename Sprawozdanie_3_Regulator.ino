@@ -1,4 +1,3 @@
-int Distance = 0;
 double BaseDistance = 150;
 double CurrentDistance;
 double KP = 2;
