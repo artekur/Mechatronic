@@ -12,11 +12,11 @@ void setup()
 }
 
 void loop() {
-  digitalWrite(6, LOW);//silnik wyłączony
+  analogWrite(6, 0);//silnik wyłączony
  while (digitalRead(7) == LOW)    //Włączenie programu
  {
   delay(300);       //redukcja drgań
-  digitalWrite(6, HIGH);    //włączenie silnika
+  analogWrite(6, 100);    //włączenie silnika
   licznik = licznik++;      //zwiększenie licznika
   Serial.println(licznik);  //wyświetlenie licznika
 
@@ -24,7 +24,7 @@ void loop() {
   {
     if (digitalRead(8)== LOW && digitalRead(9)== LOW) // zabezpieczenie przed jednoczesnym wciśnieciem obu przycisków
   {
-    digitalWrite(6, LOW);   //wyłączenie zasilania silnika
+    analogWrite(6, 0);   //wyłączenie zasilania silnika
   }
     delay(300);     //redukcja drgan przycisku
     digitalWrite(10, LOW); //Silnik obroty w lewo
@@ -34,7 +34,7 @@ void loop() {
   {
     if (digitalRead(8)== LOW && digitalRead(9)== LOW) // zabezpieczenie przed jednoczesnym wciśnieciem obu przycisków
   {
-    digitalWrite(6, LOW);   //wyłączenie zasilania silnika
+    analogWrite(6, 0);   //wyłączenie zasilania silnika
   }
     delay(300);   //redukcja drgan przycisku
     digitalWrite(10, HIGH); //Silnik obroty w lewo
